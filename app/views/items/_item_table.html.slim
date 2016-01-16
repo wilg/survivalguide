@@ -1,4 +1,5 @@
 - has_images = @items.any?{|i| i.small_image_url || i.image_url }
+- has_subtypes = @items.any?{|i| i.subtype }
 table.table.table-striped.item-table
   tr
     - if has_images
@@ -6,8 +7,9 @@ table.table.table-striped.item-table
     - if @table_show_categories
       th Category
     th Name
-    - if @table_show_locations
-      th Location
+    - if has_subtypes
+      th
+    th Location
     th
   - items = @items.sort_by{|i| i.name.naturalized } rescue @items
   - items.each do |item|
@@ -20,12 +22,17 @@ table.table.table-striped.item-table
         td= item.category.name
       td.name
         strong= item.name
-      - if @table_show_locations
+      - if has_subtypes
         td
+          = item.subtype
+      td
+        - if @table_show_locations && item.location_name
           = link_to location_url(name: item.location_name) do
             = item.location_name
             - if Item.where(location_name: item.location_name).size > 1
               span.multiple-item-location< &#9733;
+        - if item.location_details
+            div: small.text-muted= item.location_details
       td.text-right
         - if item.video_url
           = link_to "Video", item.video_url, class: "btn btn-sm btn-secondary"
