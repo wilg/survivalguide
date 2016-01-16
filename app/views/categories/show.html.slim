@@ -6,7 +6,7 @@ table.table.table-striped.item-table
     th Name
     th Location
     th
-  - @category.items.each do |item|
+  - @category.items.sort_by{|i| i.name.naturalized }.each do |item|
     tr
       - if has_images
         td
