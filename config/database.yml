@@ -2,14 +2,14 @@ development:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: watchlist_development
+  database: survivalguide_development
   pool: 5
 
 test:
   adapter: postgresql
   encoding: unicode
   host: localhost
-  database: watchlist_test
+  database: survivalguide_test
   pool: 5
 
 production:

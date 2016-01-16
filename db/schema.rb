@@ -22,18 +22,6 @@ ActiveRecord::Schema.define(version: 20160116053151) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "episodes", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "show_id"
-    t.integer  "season_number"
-    t.integer  "season_episode_number"
-    t.date     "release_date"
-    t.string   "imdb_id"
-    t.float    "imdb_rating"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-  end
-
   create_table "items", force: :cascade do |t|
     t.string   "name"
     t.string   "location_name"
@@ -43,23 +31,6 @@ ActiveRecord::Schema.define(version: 20160116053151) do
     t.integer  "category_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-  end
-
-  create_table "shows", force: :cascade do |t|
-    t.string   "title"
-    t.string   "poster_url"
-    t.string   "imdb_id"
-    t.float    "imdb_rating"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.string   "item_type"
-    t.integer  "item_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end
