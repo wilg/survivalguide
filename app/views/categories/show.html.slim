@@ -1,0 +1,19 @@
+- has_images = @category.items.any?{|i| i.small_image_url || i.image_url }
+table.table.table-striped.item-table
+  tr
+    - if has_images
+      th
+    th Name
+    th Location
+    th
+  - @category.items.each do |item|
+    tr
+      - if has_images
+        td
+          - if item.small_image_url || item.image_url
+            = image_tag item.small_image_url || item.image_url
+      td= link_to item.name, item
+      td= item.location_name
+      td.text-right
+        - if item.video_url
+          = link_to "Video", item.video_url, class: "btn btn-sm btn-secondary"
