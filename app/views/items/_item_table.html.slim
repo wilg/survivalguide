@@ -27,10 +27,7 @@ table.table.table-striped.item-table
           = item.subtype
       td
         - if @table_show_locations && item.location_name
-          = link_to location_url(name: item.location_name) do
-            = item.location_name
-            - if Item.where(location_name: item.location_name).size > 1
-              span.multiple-item-location< &#9733;
+          = render partial: "items/location_name", locals: {name: item.location_name}
         - if item.location_details
             div: small.text-muted= item.location_details
       td.text-right

@@ -1,0 +1,4 @@
+= link_to location_url(name: name) do
+  = name
+  - if Item.where(location_name: name).size > 1
+    span.multiple-item-location< &#9733;

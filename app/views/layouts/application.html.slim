@@ -23,5 +23,7 @@ html lang="en"
             - klass = @category == category ? 'active' : nil
             li.nav-item class=klass
               = link_to category.name, category, class: "nav-link"
+          li.nav-item
+            = link_to "Locations", locations_path, class: "nav-link"
     .container-fluid
         = yield
