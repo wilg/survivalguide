@@ -3,8 +3,11 @@ table.table.table-striped.item-table
   tr
     - if has_images
       th
+    - if @table_show_categories
+      th Category
     th Name
-    th Location
+    - if @table_show_locations
+      th Location
     th
   - items = @items.sort_by{|i| i.name.naturalized } rescue @items
   - items.each do |item|
@@ -13,10 +16,16 @@ table.table.table-striped.item-table
         td
           - if item.small_image_url || item.image_url
             = image_tag item.small_image_url || item.image_url
+      - if @table_show_categories
+        td= item.category.name
       td.name
         strong= item.name
-      td
-        = link_to item.location_name, location_url(name: item.location_name)
+      - if @table_show_locations
+        td
+          = link_to location_url(name: item.location_name) do
+            = item.location_name
+            - if Item.where(location_name: item.location_name).size > 1
+              span.multiple-item-location< &#9733;
       td.text-right
         - if item.video_url
           = link_to "Video", item.video_url, class: "btn btn-sm btn-secondary"
