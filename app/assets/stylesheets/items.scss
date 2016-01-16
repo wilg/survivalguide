@@ -4,6 +4,9 @@
     &:first-child {
       width: 50px;
     }
+    &.name {
+      white-space: nowrap;
+    }
     &:last-child {
       text-align: right;
     }
